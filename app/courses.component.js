@@ -1,3 +1,6 @@
+/**
+ * @author iddymagohe on 11/19/16.
+ */
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9,17 +12,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var course_service_1 = require("./course.service");
+var CourseComponent = (function () {
+    function CourseComponent(courseService) {
+        this.title = "The title of courses page";
+        this.courses = courseService.getCourses();
     }
-    AppComponent = __decorate([
+    CourseComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n           <h1>Hello Again Angular!</h1>\n           <courses></courses>\n           <authors></authors>\n        "
+            selector: 'courses',
+            template: "\n        <h2>Courses goes here</h2>\n        {{ title }}\n        <ul>\n         <li *ngFor=\"let course of courses\">\n            {{ course }}\n         </li>\n        </ul>\n      ",
+            providers: [course_service_1.CourseService] //DI
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [course_service_1.CourseService])
+    ], CourseComponent);
+    return CourseComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CourseComponent = CourseComponent;
+//# sourceMappingURL=courses.component.js.map
